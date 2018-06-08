@@ -9,5 +9,9 @@ const savePosts = (posts) => ({
         type: 'POSTS',
         payload: posts,
 });
+const saveAlbums = (albums) => ({
+        type: 'ALBUMS',
+        payload: albums,
+});
 
-export {login, savePosts};
+export {login, savePosts, saveAlbums};
