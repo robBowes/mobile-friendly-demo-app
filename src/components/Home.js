@@ -18,20 +18,46 @@ class Home extends Component {
             },
         });
     }
+    renderPosts = (posts) => {
+        if (!posts) return;
+        return posts.map((post)=>(
+            <div className="card-content">
+                <p>{post.title}</p>
+                <p>{post.body}</p>
+            </div>
+        ));
+    }
+    renderAlbums = (albums) => {
+        if (!albums) return;
+        return albums.map((album)=>(
+            <div className="card-content">
+                <p>{album.title}</p>
+                <p>{album.body}</p>
+            </div>
+        ));
+    }
     render() {
         return (
             <div>
+                <h2>My Posts</h2>
+                <div className="cardHolder">
+                    <section className="card">
+                        {this.renderPosts(this.props.posts)}
+                    </section>
+                </div>
             <div>
-                My Posts
+                <h2>My Albums</h2>
+                <div className="cardHolder">
+                    <section className="card">
+                        {this.renderAlbums(this.props.albums)}
+                    </section>
+                </div>
             </div>
             <div>
-                My Albums
+                <h2>Browse Users</h2>
             </div>
             <div>
-                Browse Users
-            </div>
-            <div>
-                Search For User
+                <h2>Search For User</h2>
             </div>
             </div>
         );
@@ -39,5 +65,7 @@ class Home extends Component {
 }
 const mapStateToProps = (state) => ({
     userId: state.user.userId,
+    posts: state.user.posts,
+    albums: state.user.albums,
 });
 export default connect(mapStateToProps)(Home);
