@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {savePosts, saveAlbums} from '../actions/actions';
 import {connect} from 'react-redux';
 import async from 'async';
+import '../css/home.css';
 
 class Home extends Component {
     componentWillMount = async () => {
@@ -22,20 +23,23 @@ class Home extends Component {
         if (!posts) return;
         return posts.map((post)=>(
             <div className="card-content">
+                <div className="content">
                 <p>{post.title}</p>
                 <p>{post.body}</p>
+                </div>
+                <div className="downChevron">⌄</div>
             </div>
         ));
     }
-    renderAlbums = (albums) => {
-        if (!albums) return;
-        return albums.map((album)=>(
-            <div className="card-content">
-                <p>{album.title}</p>
-                <p>{album.body}</p>
-            </div>
-        ));
-    }
+    // renderAlbums = (albums) => {
+    //     if (!albums) return;
+    //     return albums.map((album)=>(
+    //         <div className="card-content">
+    //             <p>{album.title}</p>
+    //             <p>{album.body}</p>
+    //         </div>
+    //     ));
+    // }
     render() {
         return (
             <div>
@@ -49,7 +53,7 @@ class Home extends Component {
                 <h2>My Albums</h2>
                 <div className="cardHolder">
                     <section className="card">
-                        {this.renderAlbums(this.props.albums)}
+                        {this.renderPosts(this.props.albums)}
                     </section>
                 </div>
             </div>

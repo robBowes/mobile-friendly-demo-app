@@ -1,0 +1,34 @@
+
+.cardHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: none;
+  
+  }
+  .card {
+    background-color: #fff;
+    min-width: 100%;
+    min-height: 200px;
+    display: flex;
+    overflow-x: auto;
+  }
+  .card-content {
+    background-color: #e74c3c;
+    min-width: 200px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card::-webkit-scrollbar {
+    display: none;
+  }
+  .content {
+    flex: 1 0 auto;
+  }
+  .downChevron {
+    font-size: 1.5em;
+    padding: 1em;
+    text-align: center;
+    flex-shrink: 0;
+  }

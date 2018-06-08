@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import {connect} from 'react-redux';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -24,6 +25,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <nav>
+            <div className="menu">
+                <div>Home</div>
+                <div>Users</div>
+                <div>Posts</div>
+            </div>
+          </nav>
           {this.switchView(this.props.view)}
       </div>
     );

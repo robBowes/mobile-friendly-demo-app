@@ -8,25 +8,3 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
-.cardHolder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: none;
-
-}
-.card {
-  background-color: #fff;
-  min-width: 100%;
-  min-height: 200px;
-  display: flex;
-  overflow-x: auto;
-}
-.card-content {
-  background-color: #e74c3c;
-  min-width: 200px;
-  margin: 5px;
-}
-.card::-webkit-scrollbar {
-  display: none;
-}
