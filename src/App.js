@@ -11,12 +11,20 @@ class App extends Component {
       view: 'LOGIN',
     };
   }
+  switchView = (view) => {
+    switch (view) {
+      case 'LOGIN':
+        return <Login />;
+      case 'HOME':
+        return <Home />;
+      default:
+        return (<div>Loading</div>);
+    }
+  };
   render() {
-    console.log(this.props);
     return (
       <div className="App">
-          {this.props.view==='LOGIN'?<Login />: null}
-          {this.props.view==='HOME'?<Home />: null}
+          {this.switchView(this.props.view)}
       </div>
     );
   }

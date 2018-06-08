@@ -6,6 +6,8 @@ export default (state = {}, action) => {
         console.log(action);
     } else if (action.type === 'POSTS') {
         newState.posts = action.payload;
+    } else if (action.type === 'ALBUMS') {
+        newState.albums = action.payload;
     }
     return newState;
 };
