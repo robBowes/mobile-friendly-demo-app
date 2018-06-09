@@ -13,5 +13,18 @@ const saveAlbums = (albums) => ({
         type: 'ALBUMS',
         payload: albums,
 });
+const displayPost = (postId) => ({
+        type: 'DISPLAY_POST',
+        payload: postId,
+});
+const home = () => ({
+        type: 'HOME',
+});
 
-export {login, savePosts, saveAlbums};
+export {
+        login,
+        savePosts,
+        saveAlbums,
+        displayPost,
+        home,
+};

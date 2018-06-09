@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {savePosts, saveAlbums} from '../actions/actions';
 import {connect} from 'react-redux';
 import async from 'async';
+import {displayPost} from '../actions/actions';
 import '../css/home.css';
 
 class Home extends Component {
@@ -24,10 +25,13 @@ class Home extends Component {
         return posts.map((post)=>(
             <div className="card-content">
                 <div className="content">
-                <p>{post.title}</p>
-                <p>{post.body}</p>
+                    <p>{post.title}</p>
+                    <p>{post.body}</p>
                 </div>
-                <div className="downChevron">⌄</div>
+                <div className="downChevron"
+                onClick={()=>this.props.dispatch(displayPost(post))}>
+                    ⌄
+                </div>
             </div>
         ));
     }
