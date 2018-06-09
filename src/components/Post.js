@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {saveComments} from '../actions/actions';
 
 
 class Post extends Component {
     componentWillMount = async () => {
         let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${this.props.post.id}/comments`);
-        let json = await reply.json();
+        let comments = await reply.json();
+        this.props.dispatch(saveComments(comments, this.props.post.id));
     }
     render() {
         return (

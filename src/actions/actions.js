@@ -20,6 +20,10 @@ const displayPost = (postId) => ({
 const home = () => ({
         type: 'HOME',
 });
+const saveComments = (comments, id) => ({
+        type: 'COMMENTS',
+        payload: {comments, id},
+});
 
 export {
         login,
@@ -27,4 +31,5 @@ export {
         saveAlbums,
         displayPost,
         home,
+        saveComments,
 };
