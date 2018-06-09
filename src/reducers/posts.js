@@ -3,8 +3,8 @@ export default (state={}, action) => {
     if (action.type === 'POSTS') {
         newState = {...action.payload, ...newState};
     } else if (action.type === 'COMMENTS') {
-        if (newState[payload.postId]) {
-            newState[payload.postId].comments = payload;
+        if (newState[action.payload.postId]) {
+            newState[action.payload.postId].comments = action.payload;
         }
     }
     return newState;
