@@ -1,9 +1,6 @@
-const login = (loginObj) => ({
+const login = (login) => ({
         type: 'LOGIN',
-        payload: {
-                username: loginObj.username,
-                userId: loginObj.userId,
-        },
+        payload: login,
 });
 const savePosts = (posts) => ({
         type: 'POSTS',

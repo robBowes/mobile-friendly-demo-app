@@ -72,7 +72,7 @@ class Home extends Component {
     }
 }
 const mapStateToProps = (state) => ({
-    userId: state.user.userId,
+    userId: state.user.id,
     posts: state.user.posts,
     albums: state.user.albums,
 });

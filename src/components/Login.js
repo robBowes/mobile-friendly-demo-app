@@ -14,10 +14,12 @@ class Login extends Component {
         event.preventDefault();
         this.setState({username: event.target.value});
     }
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        let reply = fauxFetch('/login', this.state.username);
-        if (reply.status) this.props.dispatch(login(reply));
+        // let reply = fauxFetch('/login', this.state.username);
+        let reply = await fetch('http://jsonplaceholder.typicode.com/users?username='+this.state.username);
+        let json = await reply.json();
+        if (json) this.props.dispatch(login(json));
         else alert(reply.reason);
     }
     render() {
