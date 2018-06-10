@@ -10,6 +10,8 @@ export default (view = {
     } else if (action.type === 'DISPLAY_POST') {
         newView.name = 'POST';
         newView.post = action.payload;
+    } else if (action.type === 'COMMENTS') {
+        newView.post.comments === action.payload;
     }
     return newView;
 };
