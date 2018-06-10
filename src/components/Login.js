@@ -7,7 +7,7 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-            username: 'flighthub',
+            username: 'Bret',
         };
     }
     handleChange = (event) => {
