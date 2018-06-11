@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Album from './components/Album';
 import Post from './components/Post';
 import Search from './components/Search';
+import Profile from './components/Profile';
 import {connect} from 'react-redux';
 import {home} from './actions/actions';
 import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
@@ -29,9 +30,9 @@ class App extends Component {
             </div>
           </nav>:<Login />}
             <Switch>
-              {/* <Route exact path='/' component={Login} /> */}
               <Route exact path='/post/:id' component={Post} />
               <Route exact path='/album/:id' component={Album} />
+              <Route exact path='/profile/:id' component={Profile} />
               <Route exact path='/search' component={Search} />
               <Route exact path='/home' render={()=><Home />}/>
             </Switch>
