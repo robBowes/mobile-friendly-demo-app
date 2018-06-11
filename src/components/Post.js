@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {saveComments} from '../actions/actions';
+import {Redirect, withRouter} from 'react-router-dom';
 
 
 class Post extends Component {
+    constructor(props) {
+        super(props);
+        this.id = this.props.match.params.id;
+    }
     componentWillMount = async () => {
-        let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${this.props.post.id}/comments`);
+        let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${this.id}/comments`);
         let comments = await reply.json();
-        this.props.dispatch(saveComments(comments, this.props.post.id));
+        this.props.dispatch(saveComments(comments, this.id));
         this.render();
     }
     renderComments = (post) => {
@@ -21,18 +26,21 @@ class Post extends Component {
             ));
     }
     render() {
-        const post = this.props.post;
+        if (!this.props.userId) {
+            return <Redirect to='/'/>;
+          }
+        const post = this.props.posts[this.id];
         return (
             <div>
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
-                {this.renderComments(this.props.comments)}
+                {this.renderComments(post.comments)}
             </div>
         );
     }
 }
 const mapStateToProps = (state) => ({
-    post: state.view.post,
-    comments: state.posts[state.view.post.id].comments,
+    posts: state.posts,
+    userId: state.user.id,
 });
-export default connect(mapStateToProps)(Post);
+export default withRouter(connect(mapStateToProps)(Post));

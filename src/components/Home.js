@@ -1,50 +1,57 @@
 import React, {Component} from 'react';
-import {savePosts, saveAlbums} from '../actions/actions';
+import {savePosts, saveUserAlbums} from '../actions/actions';
 import {connect} from 'react-redux';
 import async from 'async';
 import {displayPost} from '../actions/actions';
 import '../css/home.css';
+import {Redirect, Link, withRouter} from 'react-router-dom';
 
 class Home extends Component {
     componentWillMount = async () => {
+        let userId = this.props.showUser?this.props.showUser:this.props.userId;
         async.parallel({
             posts: async () =>{
-                let requestPosts = await fetch('http://jsonplaceholder.typicode.com/posts?userId='+this.props.userId);
+                let requestPosts = await fetch('http://jsonplaceholder.typicode.com/posts?userId='+userId);
                 let posts = await requestPosts.json();
                 this.props.dispatch(savePosts(posts));
             },
             albums: async () => {
-                let requestAlbums = await fetch('http://jsonplaceholder.typicode.com/albums?userId='+this.props.userId);
+                let requestAlbums = await fetch('http://jsonplaceholder.typicode.com/albums?userId='+userId);
                 let albums = await requestAlbums.json();
-                this.props.dispatch(saveAlbums(albums));
+                this.props.dispatch(saveUserAlbums(albums));
             },
         });
     }
     renderPosts = (posts) => {
         if (!posts) return;
-        return posts.map((post)=>(
-            <div className="card-content">
+        return posts.map((post, i)=>(
+            <div className="card-content" key={'post'+i}>
                 <div className="content">
                     <p>{post.title}</p>
                     <p>{post.body}</p>
                 </div>
-                <div className="downChevron"
-                onClick={()=>this.props.dispatch(displayPost(post))}>
+                <Link to={'/post/'+post.id} className="downChevron">
                     ⌄
-                </div>
+                </Link>
             </div>
         ));
     }
-    // renderAlbums = (albums) => {
-    //     if (!albums) return;
-    //     return albums.map((album)=>(
-    //         <div className="card-content">
-    //             <p>{album.title}</p>
-    //             <p>{album.body}</p>
-    //         </div>
-    //     ));
-    // }
+    renderAlbums = (albums) => {
+        if (!albums) return;
+        return albums.map((album, i)=>(
+            <div className="card-content" key={'album'+i}>
+                <p>{album.title}</p>
+                <p>{album.body}</p>
+                <Link to={'/album/'+album.id} className="downChevron">
+                    ⌄
+                </Link>
+            </div>
+        ));
+    }
     render() {
+    if (!this.props.userId) {
+        return <Redirect to='/'/>;
+      }
         return (
             <div>
                 <h2>My Posts</h2>
@@ -57,7 +64,7 @@ class Home extends Component {
                 <h2>My Albums</h2>
                 <div className="cardHolder">
                     <section className="card">
-                        {this.renderPosts(this.props.albums)}
+                        {this.renderAlbums(this.props.albums)}
                     </section>
                 </div>
             </div>
@@ -75,5 +82,7 @@ const mapStateToProps = (state) => ({
     userId: state.user.id,
     posts: state.user.posts,
     albums: state.user.albums,
+    showUser: state.view.userId,
+    view: state.view.name,
 });
-export default connect(mapStateToProps)(Home);
+export default withRouter(connect(mapStateToProps)(Home));

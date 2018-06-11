@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
+import Album from './components/Album';
 import Post from './components/Post';
 import {connect} from 'react-redux';
 import {home} from './actions/actions';
+import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
 
 
 class App extends Component {
@@ -14,36 +16,29 @@ class App extends Component {
       view: 'LOGIN',
     };
   }
-  switchView = (view) => {
-    switch (view) {
-      case 'LOGIN':
-        return <Login />;
-      case 'HOME':
-        return <Home />;
-      case 'POST':
-        return <Post />;
-      default:
-        return (<div>Loading</div>);
-    }
-  };
   render() {
     return (
       <div className="App">
           {this.props.view!=='LOGIN'?<nav>
             <div className="menu">
-                <div
-                onClick={()=>this.props.dispatch(home())}
-                >Home</div>
+                <Link to='/home'
+                >Home</Link>
                 <div>Users</div>
                 <div>Posts</div>
             </div>
           </nav>:null}
-          {this.switchView(this.props.view)}
+            <Switch>
+              <Route exact path='/' component={Login} />
+              <Route exact path='/post/:id' component={Post} />
+              <Route exact path='/album/:id' component={Album} />
+              <Route exact path='/home' render={()=><Home />}/>
+            </Switch>
       </div>
     );
   }
 }
 const mapStateToProps = (state) => ({
   view: state.view.name,
+  user: state.user,
 });
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

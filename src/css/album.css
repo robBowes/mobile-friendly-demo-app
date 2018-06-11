@@ -1,0 +1,4 @@
+.photoAlbum {
+    display: flex;
+    flex-wrap: wrap;
+}
