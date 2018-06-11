@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Album from './components/Album';
 import Post from './components/Post';
+import Search from './components/Search';
 import {connect} from 'react-redux';
 import {home} from './actions/actions';
 import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
@@ -23,14 +24,15 @@ class App extends Component {
             <div className="menu">
                 <Link to='/home'
                 >Home</Link>
-                <div>Users</div>
-                <div>Posts</div>
+                <Link to='/search'>Users</Link>
+                <div>Logout</div>
             </div>
-          </nav>:null}
+          </nav>:<Login />}
             <Switch>
-              <Route exact path='/' component={Login} />
+              {/* <Route exact path='/' component={Login} /> */}
               <Route exact path='/post/:id' component={Post} />
               <Route exact path='/album/:id' component={Album} />
+              <Route exact path='/search' component={Search} />
               <Route exact path='/home' render={()=><Home />}/>
             </Switch>
       </div>
