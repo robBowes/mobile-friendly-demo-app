@@ -24,6 +24,11 @@ const putComment = async (comment, postId, email) => {
     console.log(reply);
 };
 
+const fetchAllUsers = async () => {
+    let reply = await fetch('http://jsonplaceholder.typicode.com/users');
+    return await reply.json();
+};
+
 export {
     fetchUserAlbums,
     fetchUserPosts,
@@ -31,4 +36,5 @@ export {
     fetchUser,
     putComment,
     fetchAlbumPhotos,
+    fetchAllUsers,
 };

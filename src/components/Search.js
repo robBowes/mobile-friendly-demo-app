@@ -4,6 +4,7 @@ import {withRouter, Link} from 'react-router-dom';
 import {saveAllUsers} from '../actions/actions';
 import _ from 'lodash';
 import {raisedButton} from './css/classes';
+import {fetchAllUsers} from '../api';
 
 class Search extends Component {
     constructor() {
@@ -13,8 +14,7 @@ class Search extends Component {
         };
     }
     componentWillMount = async () => {
-        let reply = await fetch('http://jsonplaceholder.typicode.com/users');
-        let users = await reply.json();
+        let users = await fetchAllUsers();
         this.props.dispatch(saveAllUsers(users));
     }
     handleChange = (event) => {
