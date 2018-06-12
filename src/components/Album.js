@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {saveAlbum, savePhotos} from '../actions/actions';
-import '../css/album.css';
+import './css/album.css';
 import {fetchUserAlbums} from '../api';
 
 class Album extends Component {

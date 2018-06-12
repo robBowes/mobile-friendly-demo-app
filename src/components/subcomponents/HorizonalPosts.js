@@ -1,21 +1,31 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import '../../css/home.css';
+import {fabButton} from '../css/classes';
 import _ from 'lodash';
 
 class HorizonalPosts extends Component {
     renderPosts = (posts, id) => {
-        console.log(this.props);
         if (!posts) return;
         return _.filter(posts, (post)=>post.userId===id).map((post, i)=>(
-            <div className="card-content" key={'post'+i}>
-                <div className="content">
-                    <p>{post.title}</p>
-                    <p>{post.body}</p>
+            <div className="card-content mdl-card mdl-cell mdl-shadow--2dp"
+            key={'post'+i}>
+                <div className="content mdl-card-border">
+                    <div className="mdl-card__title">
+                        <h5>{post.title}</h5>
+                    </div>
+                    <div className="mdl-card__supporting-text">
+                        <p>{post.body}</p>
+                    </div>
                 </div>
-                <Link to={'/post/'+post.id} className="downChevron">
-                    ⌄
-                </Link>
+                <div className="mdl-card__actions">
+                    <Link
+                    className="expand"
+                    to={'/post/'+post.id} >
+                        <button className={fabButton}>
+                            <i className="material-icons">add</i>
+                        </button>
+                    </Link>
+                </div>
             </div>
         ));
     }

@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {saveComments} from '../actions/actions';
+import {saveComment, saveComments} from '../actions/actions';
 import {Redirect, withRouter} from 'react-router-dom';
-import {fetchPostComments} from '../api';
+import {fetchPostComments, putComment} from '../api';
 
 
 class Post extends Component {
     constructor(props) {
         super(props);
         this.id = this.props.match.params.id;
+        this.state = {
+            comment: '',
+            name: '',
+        };
     }
     componentWillMount = async () => {
         let comments = await fetchPostComments(this.id);
@@ -25,6 +29,14 @@ class Post extends Component {
                 </div>
             ));
     }
+    handleChange = (event) => {
+        this.setState({[event.target.id]: event.target.value});
+    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.dispatch(saveComment(this.state.comment, this.id, this.props.email, this.state.name));
+        putComment(this.state.comment, this.id, this.props.email);
+    }
     render() {
         if (!this.props.userId) {
             return <Redirect to='/'/>;
@@ -35,6 +47,19 @@ class Post extends Component {
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 {this.renderComments(post.comments)}
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text"
+                    id='name'
+                    placeholder='Comment Title'
+                    value={this.state.name}
+                    onChange={this.handleChange}/>
+                    <input type="text"
+                    id='comment'
+                    placeholder="Add a comment.."
+                    value={this.state.comment}
+                    onChange={this.handleChange}/>
+                    <input type="submit" value="Submit"/>
+                </form>
             </div>
         );
     }
@@ -42,5 +67,6 @@ class Post extends Component {
 const mapStateToProps = (state) => ({
     posts: state.posts,
     userId: state.user.id,
+    email: state.user.email,
 });
 export default withRouter(connect(mapStateToProps)(Post));

@@ -12,9 +12,14 @@ const fetchPostComments = async (postId) => {
     return await reply.json();
 };
 
-const putComment = async (comment, postId) => {
+const putComment = async (comment, postId, email) => {
     let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${postId}/comments`,
-    {method: 'PUT', body: JSON.stringify(comment)});
+    {
+        method: 'PUT', body: {
+            comment: JSON.stringify(comment),
+            email: JSON.stringify(email),
+        },
+    });
     console.log(reply);
 };
 
@@ -23,4 +28,5 @@ export {
     fetchUserPosts,
     fetchPostComments,
     fetchUser,
+    putComment,
 };

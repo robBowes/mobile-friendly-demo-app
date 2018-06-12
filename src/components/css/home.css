@@ -1,4 +1,7 @@
-
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
 .cardHolder {
     display: flex;
     justify-content: center;
@@ -14,7 +17,6 @@
     overflow-x: auto;
   }
   .card-content {
-    background-color: #e74c3c;
     min-width: 200px;
     margin: 5px;
     display: flex;
@@ -26,9 +28,9 @@
   .content {
     flex: 1 0 auto;
   }
-  .downChevron {
+  .expand {
     font-size: 1.5em;
-    padding: 1em;
+    padding: 0.5em;
     text-align: center;
     flex-shrink: 0;
   }

@@ -38,6 +38,10 @@ const saveAllUsers = (users) => ({
         type: 'ALL_USERS',
         payload: users,
 });
+const saveComment = (comment, id, email, name) => ({
+        type: 'SAVE_COMMENT',
+        payload: {comment, id, email, name},
+});
 
 export {
         login,
@@ -49,4 +53,5 @@ export {
         saveAlbum,
         savePhotos,
         saveAllUsers,
+        saveComment,
 };

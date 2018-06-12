@@ -3,6 +3,7 @@ import {login, home} from '../actions/actions';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {fetchUser} from '../api';
+import {raisedButton} from './css/classes';
 
 class Login extends Component {
     constructor() {
@@ -30,11 +31,18 @@ class Login extends Component {
             <div>
             <form
             onSubmit={this.handleSubmit} >
-                <input type="text"
-                value={this.state.username}
-                onChange={this.handleChange} />
+                <div className="mdl-textfield mdl-js-textfield">
+                    <input type="text"
+                    id="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    className="mdl-textfield__input"/>
+                    <label htmlFor="username"
+                    className="mdl-textfield__label">Username</label>
+                </div>
                 <input type="submit"
-                value="Login" />
+                value="Login"
+                className={raisedButton}/>
             </form>
             </div>
         );

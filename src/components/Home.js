@@ -3,7 +3,7 @@ import {savePosts, saveUserAlbums} from '../actions/actions';
 import {connect} from 'react-redux';
 import async from 'async';
 import {displayPost} from '../actions/actions';
-import '../css/home.css';
+import './css/home.css';
 import {Redirect, Link, withRouter} from 'react-router-dom';
 import HorizonalPosts from './subcomponents/HorizonalPosts';
 import HorizontalAlbums from './subcomponents/HorizontalAlbums';

@@ -9,6 +9,7 @@ import Profile from './components/Profile';
 import {connect} from 'react-redux';
 import {home} from './actions/actions';
 import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import {fixedHeader} from './components/css/classes';
 
 
 class App extends Component {
@@ -22,11 +23,16 @@ class App extends Component {
     return (
       <div className="App">
           {this.props.view!=='LOGIN'?<nav>
-            <div className="menu">
+            <div className={fixedHeader + ' menu mdl-navigation mdl-layout__header-row mdl-layout__header'}>
                 <Link to='/home'
+                className="mdl-navigation__link"
                 >Home</Link>
-                <Link to='/search'>Users</Link>
-                <div>Logout</div>
+                <Link to='/search'
+                className="mdl-navigation__link"
+                >Users</Link>
+                <div
+                className="mdl-navigation__link"
+                >Logout</div>
             </div>
           </nav>:<Login />}
             <Switch>
