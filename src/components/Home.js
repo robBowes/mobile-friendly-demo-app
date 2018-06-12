@@ -24,7 +24,7 @@ class Home extends Component {
         });
     }
     componentDidMount() {
-        window.componentHandler.upgradeAllRegistered();
+        if (window.componentHandler) window.componentHandler.upgradeAllRegistered();
     }
     render() {
     if (!this.props.userId) {
