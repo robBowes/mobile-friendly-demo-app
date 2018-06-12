@@ -16,14 +16,16 @@ class HorizontalAlbums extends Component {
                     <div className="mdl-card__supporting-text">
                         <p>{album.body}</p>
                     </div>
+                    </div>
                     <div className="mdl-card__actions">
-                        <Link to={'/album/'+album.id} className="downChevron">
+                        <Link
+                        to={'/album/'+album.id}
+                        className="expand">
                             <button className={fabButton}>
                                 <i className="material-icons">add</i>
                             </button>
                         </Link>
                     </div>
-                </div>
             </div>
         ));
     }

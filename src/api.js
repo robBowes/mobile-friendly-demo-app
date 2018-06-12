@@ -21,7 +21,6 @@ const putComment = async (comment, postId, email) => {
             email: JSON.stringify(email),
         },
     });
-    console.log(reply);
 };
 
 const fetchAllUsers = async () => {
