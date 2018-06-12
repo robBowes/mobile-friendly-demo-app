@@ -23,7 +23,9 @@ class App extends Component {
     return (
       <div className="App mdl-color--grey-100">
           {this.props.view!=='LOGIN'?<nav>
-            <div className={fixedHeader + ' menu mdl-navigation mdl-layout__header-row mdl-layout__header'}>
+            <div
+            className={fixedHeader +
+            ' menu mdl-navigation mdl-layout__header-row mdl-layout__header'}>
                 <Link to='/home'
                 className="mdl-navigation__link"
                 >Home</Link>
@@ -43,7 +45,10 @@ class App extends Component {
               <Route exact path='/profile/:id' component={Profile} />
               <Route exact path='/search' component={Search} />
               <Route exact path='/home' render={()=><Home />}/>
-              <Route exact path='/' render={()=>this.props.view==='HOME'?<Home />:null}/>
+              <Route
+              exact
+              path='/'
+              render={()=>this.props.view==='HOME'?<Home />:null}/>
             </Switch>
       </div>
     );

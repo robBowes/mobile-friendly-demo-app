@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter, Link, Redirect} from 'react-router-dom';
 import {saveAllUsers} from '../actions/actions';
 import _ from 'lodash';
 import {raisedButton} from './css/classes';
@@ -45,9 +45,14 @@ class Search extends Component {
         ));
     }
     componentDidMount() {
-        window.componentHandler.upgradeDom();
+        if (window.componentHandler) {
+            window.componentHandler.upgradeAllRegistered();
+        }
     }
     render() {
+        if (this.props.view ==='LOGIN') {
+            return <Redirect to='/'/>;
+        }
         return (
             <div className="search">
             <form onSubmit={this.handleSubmit}>
@@ -74,5 +79,6 @@ class Search extends Component {
 
 const mapStateToProps = (state) => ({
     users: state.users,
+    view: state.view.name,
 });
 export default withRouter(connect(mapStateToProps)(Search));

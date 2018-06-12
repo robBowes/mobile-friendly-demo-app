@@ -22,7 +22,7 @@ class HorizonalPosts extends Component {
                     className="expand"
                     to={'/post/'+post.id} >
                         <button className={fabButton}>
-                            <i className="material-icons">add</i>
+                            <i className="material-icons">expand_more</i>
                         </button>
                     </Link>
                 </div>

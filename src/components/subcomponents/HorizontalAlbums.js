@@ -22,7 +22,7 @@ class HorizontalAlbums extends Component {
                         to={'/album/'+album.id}
                         className="expand">
                             <button className={fabButton}>
-                                <i className="material-icons">add</i>
+                                <i className="material-icons">expand_more</i>
                             </button>
                         </Link>
                     </div>

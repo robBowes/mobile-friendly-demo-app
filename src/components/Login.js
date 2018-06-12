@@ -19,9 +19,11 @@ class Login extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         let user = await fetchUser(this.state.username);
-        if (user) this.props.dispatch(login(user));
-        else alert('invalid login');
-        this.props.dispatch(home());
+        console.log(user);
+        if (user[0]) {
+            this.props.dispatch(login(user));
+            this.props.dispatch(home());
+        } else alert('Try username: Bret');
     }
     render() {
         if (this.props.view==='HOME') {
@@ -39,7 +41,8 @@ class Login extends Component {
                     className="mdl-textfield__input"/>
                     <label htmlFor="username"
                     className="mdl-textfield__label">Username</label>
-                    <div className="mdl-tooltip" for="username">Hint: Try "Bret"</div>
+                    <div className="mdl-tooltip"
+                    htmlFor="username">Hint: Try "Bret"</div>
                 </div>
                 <input type="submit"
                 value="Login"
