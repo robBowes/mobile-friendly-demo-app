@@ -1,5 +1,5 @@
 const fetchJsonPlaceHolder = (path, query) => async (param) =>{
-    let reply = await fetch(`http://jsonplaceholder.typicode.com/${path}?${query}=${param}`);
+    let reply = await fetch(`https://jsonplaceholder.typicode.com/${path}?${query}=${param}`);
     return await reply.json();
 };
 
@@ -9,12 +9,12 @@ const fetchUser = fetchJsonPlaceHolder('users', 'username');
 const fetchAlbumPhotos = fetchJsonPlaceHolder('photos', 'albumId');
 
 const fetchPostComments = async (postId) => {
-    let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${postId}/comments`);
+    let reply = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`);
     return await reply.json();
 };
 
 const putComment = async (comment, postId, email) => {
-    let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${postId}/comments`,
+    let reply = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`,
     {
         method: 'PUT', body: {
             comment: JSON.stringify(comment),
