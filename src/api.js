@@ -25,7 +25,7 @@ const putComment = async (comment, postId, email) => {
 };
 
 const fetchAllUsers = async () => {
-    let reply = await fetch('http://jsonplaceholder.typicode.com/users');
+    let reply = await fetch('https://jsonplaceholder.typicode.com/users');
     return await reply.json();
 };
 
