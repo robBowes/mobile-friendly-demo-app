@@ -22,3 +22,4 @@ A live demonstration of this app can be found at https://mdl-demo-app.herokuapp.
   * Because of the global state, even though there is no two way backend communication, posting new comments appears persistent during a browsing session
   * The global state allows for caching of content to speed up browsing on slow connections, although this has not been fully implemented yet
   * Where possible I have used reusable code, and I have tried to embrace immutability and the functional style of programming
+  * I used the Material Design Lite to style all the components, giving the app a crisp and proffesional feel
