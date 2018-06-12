@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import HorizonalPosts from './subcomponents/HorizonalPosts';
 import {fetchUserPosts} from '../api';
-import {saveAlbum, savePosts} from '../actions/actions';
+import {savePosts} from '../actions/actions';
 
 class Profile extends Component {
     constructor(props) {

@@ -22,10 +22,6 @@ const saveComments = (comments, id) => ({
         type: 'COMMENTS',
         payload: {comments, id},
 });
-const showUser = (id) => ({
-        type: 'USER',
-        payload: id,
-});
 const saveAlbum = (album, id) => ({
         type: 'SAVE_ALBUM',
         payload: {album, id},

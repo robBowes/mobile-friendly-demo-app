@@ -1,5 +1,4 @@
 import {mapById} from './utils';
-import _ from 'lodash';
 
 export default (state={}, action) => {
     let newState = {...state};

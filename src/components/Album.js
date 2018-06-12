@@ -24,7 +24,9 @@ class Album extends Component {
         if (!photos) return;
         return photos.map((photo, i)=>(
             <div key={'photo' + i}>
-                <img src={photo.thumbnailUrl}/>
+                <img
+                alt={photo.title}
+                src={photo.thumbnailUrl}/>
             </div>
         ));
     }
