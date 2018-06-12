@@ -34,8 +34,8 @@ class Search extends Component {
                 <Link to={`/profile/${user.id}`}>
                     <h6 className="mdl-card__title-text"> {user.name} </h6>
                     <div className="mdl-card__actions">
-                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                            <i class="material-icons">account_circle</i>
+                        <button className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i className="material-icons">account_circle</i>
                         </button>
                     </div>
                 </Link>
