@@ -9,7 +9,7 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-            username: 'Bret',
+            username: '',
         };
     }
     handleChange = (event) => {
@@ -39,6 +39,7 @@ class Login extends Component {
                     className="mdl-textfield__input"/>
                     <label htmlFor="username"
                     className="mdl-textfield__label">Username</label>
+                    <div className="mdl-tooltip" for="username">Hint: Try "Bret"</div>
                 </div>
                 <input type="submit"
                 value="Login"
