@@ -24,6 +24,11 @@ class Login extends Component {
             this.props.dispatch(home());
         } else alert('Try username: Bret');
     }
+    componentDidMount() {
+        if (window.componentHandler) {
+            window.componentHandler.upgradeAllRegistered();
+        }
+    }
     render() {
         if (this.props.view==='HOME') {
             return <Redirect to='/home'/>;

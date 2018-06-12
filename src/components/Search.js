@@ -26,7 +26,8 @@ class Search extends Component {
     renderUsers = (users, search) => {
         if (!search) return;
         let showUsers = _.filter(users,
-            (user)=>user.name.includes(this.state.search));
+            (user)=>user.name.toLowerCase()
+            .includes(this.state.search.toLowerCase()));
         return showUsers.map((user, i)=>(
             <div
             className="card-content mdl-card mdl-cell mdl-shadow--2dp"
