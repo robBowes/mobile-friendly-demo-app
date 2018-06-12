@@ -40,6 +40,7 @@ class App extends Component {
               <Route exact path='/profile/:id' component={Profile} />
               <Route exact path='/search' component={Search} />
               <Route exact path='/home' render={()=><Home />}/>
+              <Route exact path='/' render={()=>this.props.view==='HOME'?<Home />:null}/>
             </Switch>
       </div>
     );
