@@ -8,6 +8,8 @@ export default (state = {}, action) => {
         newState.posts = action.payload.reduce(mapById, {});
     } else if (action.type === 'ALBUMS') {
         newState.albums = action.payload;
+    } else if (action.type === 'LOGOUT') {
+        newState = {};
     }
     return newState;
 };

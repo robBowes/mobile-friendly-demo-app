@@ -6,6 +6,7 @@ import Album from './components/Album';
 import Post from './components/Post';
 import Search from './components/Search';
 import Profile from './components/Profile';
+import {logout} from './actions/actions';
 import {connect} from 'react-redux';
 import {Link, Route, Switch, withRouter} from 'react-router-dom';
 import {fixedHeader} from './components/css/classes';
@@ -29,9 +30,11 @@ class App extends Component {
                 <Link to='/search'
                 className="mdl-navigation__link"
                 >Users</Link>
-                <div
+                <Link
+                to='/'
                 className="mdl-navigation__link"
-                >Logout</div>
+                onClick={()=>this.props.dispatch(logout())}
+                >Logout</Link>
             </div>
           </nav>:<Login />}
             <Switch>

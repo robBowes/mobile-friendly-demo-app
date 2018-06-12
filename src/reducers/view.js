@@ -12,6 +12,8 @@ export default (view = {
         newView.userId = false;
     } else if (action.type === 'DISPLAY_POST') {
         newView.name = 'POST';
+    } else if (action.type === 'LOGOUT') {
+        newView.name = 'LOGIN';
     }
     return newView;
 };

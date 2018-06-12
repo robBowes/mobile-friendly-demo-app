@@ -42,6 +42,9 @@ const saveComment = (comment, id, email, name) => ({
         type: 'SAVE_COMMENT',
         payload: {comment, id, email, name},
 });
+const logout = () => ({
+        type: 'LOGOUT',
+});
 
 export {
         login,
@@ -54,4 +57,5 @@ export {
         savePhotos,
         saveAllUsers,
         saveComment,
+        logout,
 };
