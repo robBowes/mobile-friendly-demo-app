@@ -46,7 +46,9 @@ class Post extends Component {
         putComment(this.state.comment, this.id, this.props.email);
     }
     componentDidMount() {
-        window.componentHandler.upgradeDom();
+        if (window.componentHandler) {
+            window.componentHandler.upgradeAllRegistered();
+        }
     }
     render() {
         if (!this.props.userId) {

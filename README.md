@@ -1,5 +1,5 @@
 # Mobile Friendly Demo App
-## Styled with Google Material Design
+## Styled with Google Material Design Lite Library
 
 This is a demo to show a mobile friendly app displaying information from http://jsonplaceholder.typicode.com.
 
