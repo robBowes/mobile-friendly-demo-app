@@ -22,10 +22,15 @@ class Post extends Component {
     renderComments = (post) => {
         if (!post) return;
         return post.map((comment, i)=>(
-                <div key={'comment'+ i}>
-                    <h4>{comment.name}</h4>
-                    <p>{comment.email}</p>
-                    <p>{comment.body}</p>
+                <div className="card-content mdl-card mdl-cell mdl-shadow--2dp"
+                key={'comment'+ i}>
+                    <div className="mdl-card__title">
+                        <h5 className="mdl-card__title-text">{comment.name}</h5>
+                    </div>
+                    <div className="mdl-card__supporting-text">
+                        <p>{comment.email}</p>
+                        <p>{comment.body}</p>
+                    </div>
                 </div>
             ));
     }
@@ -34,7 +39,9 @@ class Post extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.dispatch(saveComment(this.state.comment, this.id, this.props.email, this.state.name));
+        this.props.dispatch(saveComment(
+            this.state.comment, this.id, this.props.email, this.state.name)
+        );
         putComment(this.state.comment, this.id, this.props.email);
     }
     render() {
@@ -44,22 +51,32 @@ class Post extends Component {
         const post = this.props.posts[this.id];
         return (
             <div>
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-                {this.renderComments(post.comments)}
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text"
-                    id='name'
-                    placeholder='Comment Title'
-                    value={this.state.name}
-                    onChange={this.handleChange}/>
-                    <input type="text"
-                    id='comment'
-                    placeholder="Add a comment.."
-                    value={this.state.comment}
-                    onChange={this.handleChange}/>
-                    <input type="submit" value="Submit"/>
-                </form>
+            <div className="card-content mdl-card mdl-cell mdl-shadow--2dp">
+                <div className="content mdl-card-border">
+                    <div className="mdl-card__title">
+                        <h3 className="mdl-card__title-text">{post.title}</h3>
+                    </div>
+                    <div className="mdl-card__supporting-text">
+                        <p>{post.body}</p>
+                    </div>
+                 </div>
+                 </div>
+                 <div className="mdl-card-border">
+                    {this.renderComments(post.comments)}
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text"
+                        id='name'
+                        placeholder='Comment Title'
+                        value={this.state.name}
+                        onChange={this.handleChange}/>
+                        <input type="text"
+                        id='comment'
+                        placeholder="Add a comment.."
+                        value={this.state.comment}
+                        onChange={this.handleChange}/>
+                        <input type="submit" value="Submit"/>
+                    </form>
+                </div>
             </div>
         );
     }

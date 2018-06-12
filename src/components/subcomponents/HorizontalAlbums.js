@@ -7,10 +7,11 @@ class HorizontalAlbums extends Component {
     renderAlbums = (albums) => {
         if (!albums) return;
         return albums.map((album, i)=>(
-            <div className="card-content mdl-card mdl-cell mdl-shadow--2dp" key={'album'+i}>
+            <div className="card-content mdl-card mdl-cell mdl-shadow--2dp"
+            key={'album'+i}>
                 <div className="content mdl-card-border">
                     <div className="mdl-card__title">
-                        <h5>{album.title}</h5>
+                        <h5 className="mdl-card__title-text">{album.title}</h5>
                     </div>
                     <div className="mdl-card__supporting-text">
                         <p>{album.body}</p>

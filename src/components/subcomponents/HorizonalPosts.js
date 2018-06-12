@@ -11,7 +11,7 @@ class HorizonalPosts extends Component {
             key={'post'+i}>
                 <div className="content mdl-card-border">
                     <div className="mdl-card__title">
-                        <h5>{post.title}</h5>
+                        <h5 className="mdl-card__title-text">{post.title}</h5>
                     </div>
                     <div className="mdl-card__supporting-text">
                         <p>{post.body}</p>
