@@ -31,7 +31,7 @@ class HorizonalPosts extends Component {
     }
     render() {
         return (
-            <div className='card'>
+            <div className='card mdl-color--grey-100'>
                 {this.renderPosts(this.props.posts, this.props.id)}
             </div>
         );

@@ -8,13 +8,10 @@ export default (state={}, action) => {
     } else if (action.type === 'COMMENTS') {
         if (!newState[action.payload.id]) newState[action.payload.id] = {comments: []};
         if (!newState[action.payload.id].comments) newState[action.payload.id].comments = [];
-        console.log(newState[action.payload.id]);
-        console.log(action.payload.comments);
         newState[action.payload.id].comments = _.uniqBy([
             ...newState[action.payload.id].comments,
             ...action.payload.comments,
         ], 'body');
-        // newState[action.payload.id].comments.concat(action.payload.comments);
     } else if (action.type === 'SAVE_COMMENT') {
         newState[action.payload.id].comments = [
             ...newState[action.payload.id].comments,

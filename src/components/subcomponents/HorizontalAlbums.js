@@ -31,7 +31,7 @@ class HorizontalAlbums extends Component {
     }
     render() {
         return (
-            <div className="card">
+            <div className="card mdl-color--grey-100">
                 {this.renderAlbums(this.props.albums)}
             </div>
         );

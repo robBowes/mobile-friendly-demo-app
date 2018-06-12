@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Redirect} from 'react-router-dom';
 import {saveAlbum, savePhotos} from '../actions/actions';
 import './css/album.css';
 import {fetchUserAlbums, fetchAlbumPhotos} from '../api';
+import LazyLoad from 'react-lazy-load';
 
 class Album extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class Album extends Component {
         this.id = this.props.match.params.id;
     }
     componentWillMount = async () => {
+        if (!this.props.albums[this.id]) return;
         if (!this.props.albums[this.id]) {
             let album = await fetchUserAlbums(this.id);
             this.props.dispatch(saveAlbum(album, this.id));
@@ -24,17 +26,26 @@ class Album extends Component {
         if (!photos) return;
         return photos.map((photo, i)=>(
             <div key={'photo' + i}>
-                <img
-                alt={photo.title}
-                src={photo.thumbnailUrl}/>
+                <LazyLoad height={150} width={150}>
+                    <img
+                    alt={photo.title}
+                    src={photo.thumbnailUrl}/>
+                </LazyLoad>
             </div>
         ));
     }
     render() {
+        if (this.props.view === 'LOGIN') {
+            return <Redirect to='/'/>;
+        }
         const album = this.props.albums[this.id];
         if (!album) return (<div>Loading</div>);
         return (
-            <div className="card-content mdl-card mdl-cell mdl-shadow--2dp">
+            <div
+            className="card-content
+            mdl-card mdl-cell
+            mdl-shadow--2dp
+            mdl-color--grey-100">
                 <div className="mdl-card__title">
                     <h2 className="mdl-card__title-text">{album.title}</h2>
                 </div>
@@ -47,5 +58,6 @@ class Album extends Component {
 }
 const mapStateToProps = (state) => ({
     albums: state.albums,
+    view: state.view.name,
 });
 export default withRouter(connect(mapStateToProps)(Album));

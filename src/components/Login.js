@@ -19,7 +19,6 @@ class Login extends Component {
     handleSubmit = async (event) => {
         event.preventDefault();
         let user = await fetchUser(this.state.username);
-        console.log(user);
         if (user[0]) {
             this.props.dispatch(login(user));
             this.props.dispatch(home());

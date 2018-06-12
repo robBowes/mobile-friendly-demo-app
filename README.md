@@ -23,3 +23,8 @@ A live demonstration of this app can be found at https://mdl-demo-app.herokuapp.
   * The global state allows for caching of content to speed up browsing on slow connections, although this has not been fully implemented yet
   * Where possible I have used reusable code, and I have tried to embrace immutability and the functional style of programming
   * I used the Material Design Lite to style all the components, giving the app a crisp and proffesional feel
+
+#### Performance Considerations
+  * Fetches are only made for neccary data
+  * Lazy loading pictures on the album page
+  * Loading progress bar on the home page

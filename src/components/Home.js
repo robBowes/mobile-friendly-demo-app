@@ -28,23 +28,32 @@ class Home extends Component {
         }
     }
     render() {
-    if (!this.props.userId) {
-        return <Redirect to='/'/>;
-      }
+        if (!this.props.userId) {
+            return <Redirect to='/'/>;
+        }
         return (
             <div>
-                <h2>My Posts</h2>
-                <div className="cardHolder">
-                    <HorizonalPosts
-                    posts={this.props.posts}
-                    id={this.props.userId} />
-                </div>
-            <div>
-                <h2>My Albums</h2>
-                <div className="cardHolder">
-                    <HorizontalAlbums albums={this.props.albums}/>
-                </div>
-            </div>
+                {
+                    (!!this.props.albums && !!this.props.posts)?
+                    (<div>
+                        <h2>My Posts</h2>
+                        <div className="cardHolder">
+                            <HorizonalPosts
+                            posts={this.props.posts}
+                            id={this.props.userId} />
+                        </div>
+                        <div>
+                        <h2>My Albums</h2>
+                        <div className="cardHolder">
+                            <HorizontalAlbums albums={this.props.albums}/>:
+                        </div>
+                        </div>
+                    </div>):
+                    (<div id="p2" className="mdl-progress
+                    mdl-js-progress
+                    mdl-progress__indeterminate">
+                    </div>)
+                }
             </div>
         );
     }
