@@ -11,7 +11,6 @@ export default (state={}, action) => {
             [...action.payload.comments, ...newState[action.payload.id].comments];
         } else newState[action.payload.id].comments = action.payload.comments;
     } else if (action.type === 'SAVE_COMMENT') {
-        console.log('save');
         newState[action.payload.id].comments = [...newState[action.payload.id].comments,
         {
             body: action.payload.comment,

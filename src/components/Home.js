@@ -23,6 +23,9 @@ class Home extends Component {
             },
         });
     }
+    componentDidMount() {
+        window.componentHandler.upgradeAllRegistered();
+    }
     render() {
     if (!this.props.userId) {
         return <Redirect to='/'/>;

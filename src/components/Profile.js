@@ -17,9 +17,9 @@ class Profile extends Component {
         let user = this.user;
         return (
             <div>
+                    <h1>{user.name}</h1>
                 <table>
                     <tbody>
-                    <th>{user.name}</th>
 
                     <tr>
                         <td>Email</td>
@@ -49,7 +49,7 @@ class Profile extends Component {
                     </tr>
                     </tbody>
                 </table>
-                <h2>{user.name.split(' ')[0]}'s Posts</h2>
+                <h3>{user.name.split(' ')[0]}'s Posts</h3>
                 <HorizonalPosts posts={this.props.posts} id={user.id}/>
             </div>
         );

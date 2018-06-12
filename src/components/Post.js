@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {saveComment, saveComments} from '../actions/actions';
 import {Redirect, withRouter} from 'react-router-dom';
 import {fetchPostComments, putComment} from '../api';
+import {raisedButton} from './css/classes';
 
 
 class Post extends Component {
@@ -44,6 +45,9 @@ class Post extends Component {
         );
         putComment(this.state.comment, this.id, this.props.email);
     }
+    componentDidMount() {
+        window.componentHandler.upgradeDom();
+    }
     render() {
         if (!this.props.userId) {
             return <Redirect to='/'/>;
@@ -61,20 +65,38 @@ class Post extends Component {
                     </div>
                  </div>
                  </div>
-                 <div className="mdl-card-border">
+                 <div className="mdl-card-border" action="#">
+                 <div className="mdl-card__title">
+                        <h4 className="mdl-card__title-text">Comments</h4>
+                    </div>
                     {this.renderComments(post.comments)}
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text"
-                        id='name'
-                        placeholder='Comment Title'
-                        value={this.state.name}
-                        onChange={this.handleChange}/>
-                        <input type="text"
-                        id='comment'
-                        placeholder="Add a comment.."
-                        value={this.state.comment}
-                        onChange={this.handleChange}/>
-                        <input type="submit" value="Submit"/>
+                        <div className="mdl-textfield mdl-js-textfield">
+                            <input type="text"
+                            className="mdl-textfield__input"
+                            id='name'
+                            value={this.state.name}
+                            onChange={this.handleChange}/>
+                            <label
+                            className="mdl-textfield__label"
+                            htmlFor="name">Comment Title</label>
+                        </div>
+                        <div className="mdl-textfield mdl-js-textfield">
+                            <textarea type="text"
+                            rows='3'
+                            className="mdl-textfield__input"
+                            id='comment'
+                            value={this.state.comment}
+                            onChange={this.handleChange}/>
+                            <label
+                            className="mdl-textfield__label"
+                            htmlFor="comment">
+                                Add a comment
+                            </label>
+                        </div>
+                        <input type="submit"
+                        value="Submit"
+                        className={raisedButton}/>
                     </form>
                 </div>
             </div>

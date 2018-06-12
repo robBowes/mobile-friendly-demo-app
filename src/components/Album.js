@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {saveAlbum, savePhotos} from '../actions/actions';
 import './css/album.css';
-import {fetchUserAlbums} from '../api';
+import {fetchUserAlbums, fetchAlbumPhotos} from '../api';
 
 class Album extends Component {
     constructor(props) {
@@ -12,19 +12,18 @@ class Album extends Component {
     }
     componentWillMount = async () => {
         if (!this.props.albums[this.id]) {
-            let album = fetchUserAlbums(this.id);
+            let album = await fetchUserAlbums(this.id);
             this.props.dispatch(saveAlbum(album, this.id));
         }
         if (!this.props.albums[this.id].photos) {
-            let reply = await fetch(`http://jsonplaceholder.typicode.com/photos?albumId=${this.id}`);
-            let photos = await reply.json();
+            let photos = await fetchAlbumPhotos(this.id);
             this.props.dispatch(savePhotos(photos, this.id));
         }
     }
     renderPhotos = (photos) =>{
         if (!photos) return;
         return photos.map((photo, i)=>(
-            <div>
+            <div key={'photo' + i}>
                 <img src={photo.thumbnailUrl}/>
             </div>
         ));
@@ -33,8 +32,10 @@ class Album extends Component {
         const album = this.props.albums[this.id];
         if (!album) return (<div>Loading</div>);
         return (
-            <div>
-                <h2>{album.title}</h2>
+            <div className="card-content mdl-card mdl-cell mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">{album.title}</h2>
+                </div>
                 <div className="photoAlbum">
                     {this.renderPhotos(album.photos)}
                 </div>

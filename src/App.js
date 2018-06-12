@@ -7,8 +7,7 @@ import Post from './components/Post';
 import Search from './components/Search';
 import Profile from './components/Profile';
 import {connect} from 'react-redux';
-import {home} from './actions/actions';
-import {Link, Route, Redirect, Switch, withRouter} from 'react-router-dom';
+import {Link, Route, Switch, withRouter} from 'react-router-dom';
 import {fixedHeader} from './components/css/classes';
 
 
@@ -21,7 +20,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="App mdl-color--grey-100">
           {this.props.view!=='LOGIN'?<nav>
             <div className={fixedHeader + ' menu mdl-navigation mdl-layout__header-row mdl-layout__header'}>
                 <Link to='/home'

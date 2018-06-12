@@ -6,6 +6,7 @@ const fetchJsonPlaceHolder = (path, query) => async (param) =>{
 const fetchUserAlbums = fetchJsonPlaceHolder('albums', 'userId');
 const fetchUserPosts = fetchJsonPlaceHolder('posts', 'userId');
 const fetchUser = fetchJsonPlaceHolder('users', 'username');
+const fetchAlbumPhotos = fetchJsonPlaceHolder('photos', 'albumId');
 
 const fetchPostComments = async (postId) => {
     let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${postId}/comments`);
@@ -29,4 +30,5 @@ export {
     fetchPostComments,
     fetchUser,
     putComment,
+    fetchAlbumPhotos,
 };
