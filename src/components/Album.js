@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {saveAlbum, savePhotos} from '../actions/actions';
 import '../css/album.css';
+import {fetchUserAlbums} from '../api';
 
 class Album extends Component {
     constructor(props) {
@@ -11,8 +12,7 @@ class Album extends Component {
     }
     componentWillMount = async () => {
         if (!this.props.albums[this.id]) {
-            let reply = await fetch(`http://jsonplaceholder.typicode.com/albums/${this.id}`);
-            let album = await reply.json();
+            let album = fetchUserAlbums(this.id);
             this.props.dispatch(saveAlbum(album, this.id));
         }
         if (!this.props.albums[this.id].photos) {

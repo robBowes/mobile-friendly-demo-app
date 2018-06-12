@@ -1,17 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import HorizonalPosts from './subcomponents/HorizonalPosts';
+import {fetchUserPosts} from '../api';
+import {saveAlbum, savePosts} from '../actions/actions';
 
 class Profile extends Component {
     constructor(props) {
         super(props);
         this.user = props.users[props.match.params.id];
     }
+    componentWillMount = async () => {
+        let posts = await fetchUserPosts(this.user.id);
+        this.props.dispatch(savePosts(posts));
+    }
     render() {
         let user = this.user;
         return (
             <div>
                 <table>
+                    <tbody>
                     <th>{user.name}</th>
+
                     <tr>
                         <td>Email</td>
                         <td>{user.email}</td>
@@ -38,7 +47,10 @@ class Profile extends Component {
                     <tr>
                         <td>{user.company.catchPhrase}</td>
                     </tr>
+                    </tbody>
                 </table>
+                <h2>{user.name.split(' ')[0]}'s Posts</h2>
+                <HorizonalPosts posts={this.props.posts} id={user.id}/>
             </div>
         );
     }
@@ -46,5 +58,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => ({
     users: state.users,
+    posts: state.posts,
+    albums: state.albums,
 });
 export default connect(mapStateToProps)(Profile);

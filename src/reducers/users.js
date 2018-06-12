@@ -1,10 +1,9 @@
+import {mapById} from './utils';
+
 export default (state = {}, action) => {
     let newState = Object.assign({}, state);
     if (action.type === 'ALL_USERS') {
-        newState = action.payload.reduce((acc, el)=>{
-            acc[el.id] = el;
-            return acc;
-        }, {});
+        newState = action.payload.reduce(mapById, {});
     }
     return newState;
 };

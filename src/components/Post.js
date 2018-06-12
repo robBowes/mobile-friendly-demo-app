@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {saveComments} from '../actions/actions';
 import {Redirect, withRouter} from 'react-router-dom';
+import {fetchPostComments} from '../api';
 
 
 class Post extends Component {
@@ -10,8 +11,7 @@ class Post extends Component {
         this.id = this.props.match.params.id;
     }
     componentWillMount = async () => {
-        let reply = await fetch(`http://jsonplaceholder.typicode.com/posts/${this.id}/comments`);
-        let comments = await reply.json();
+        let comments = await fetchPostComments(this.id);
         this.props.dispatch(saveComments(comments, this.id));
         this.render();
     }

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {login, home} from '../actions/actions';
-import fauxFetch from '../fauxFetch';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {fetchUser} from '../api';
 
 class Login extends Component {
     constructor() {
@@ -17,10 +17,9 @@ class Login extends Component {
     }
     handleSubmit = async (event) => {
         event.preventDefault();
-        let reply = await fetch('http://jsonplaceholder.typicode.com/users?username='+this.state.username);
-        let json = await reply.json();
-        if (json) this.props.dispatch(login(json));
-        else alert(reply.reason);
+        let user = await fetchUser(this.state.username);
+        if (user) this.props.dispatch(login(user));
+        else alert('invalid login');
         this.props.dispatch(home());
     }
     render() {
