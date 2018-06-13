@@ -25,6 +25,6 @@ A live demonstration of this app can be found at https://mdl-demo-app.herokuapp.
   * I used the Material Design Lite to style all the components, giving the app a crisp and proffesional feel
 
 #### Performance Considerations
-  * Fetches are only made for neccary data
+  * Fetches are only made for necessary data
   * Lazy loading pictures on the album page
   * Loading progress bar on the home page

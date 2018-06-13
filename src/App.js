@@ -28,15 +28,22 @@ class App extends Component {
             ' menu mdl-navigation mdl-layout__header-row mdl-layout__header'}>
                 <Link to='/home'
                 className="mdl-navigation__link"
-                >Home</Link>
+                >
+                  <i className="material-icons">home</i>
+                  {/* Home */}
+                </Link>
                 <Link to='/search'
-                className="mdl-navigation__link"
-                >Users</Link>
+                className="mdl-navigation__link">
+                  {/* Users */}
+                  <i className="material-icons">search</i>
+                </Link>
                 <Link
                 to='/'
                 className="mdl-navigation__link"
-                onClick={()=>this.props.dispatch(logout())}
-                >Logout</Link>
+                onClick={()=>this.props.dispatch(logout())}>
+                  {/* Logout */}
+                  <i className="material-icons">clear</i>
+                </Link>
             </div>
           </nav>:<Login />}
             <Switch>

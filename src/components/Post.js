@@ -67,12 +67,15 @@ class Post extends Component {
                     </div>
                  </div>
                  </div>
-                 <div className="mdl-card-border" action="#">
                  <div className="mdl-card__title">
                         <h4 className="mdl-card__title-text">Comments</h4>
                     </div>
                     {this.renderComments(post.comments)}
                     <form onSubmit={this.handleSubmit}>
+                        <div className="mdl-card__title">
+                            <h3 className="mdl-card__title-text">Leave a comment</h3>
+                        </div>
+                        <div className="mdl-card mdl-cell mdl-shadow--2dp">
                         <div className="mdl-textfield mdl-js-textfield">
                             <input type="text"
                             className="mdl-textfield__input"
@@ -81,7 +84,7 @@ class Post extends Component {
                             onChange={this.handleChange}/>
                             <label
                             className="mdl-textfield__label"
-                            htmlFor="name">Comment Title</label>
+                            htmlFor="name">Title</label>
                         </div>
                         <div className="mdl-textfield mdl-js-textfield">
                             <textarea type="text"
@@ -93,14 +96,14 @@ class Post extends Component {
                             <label
                             className="mdl-textfield__label"
                             htmlFor="comment">
-                                Add a comment
+                                Comment
                             </label>
                         </div>
                         <input type="submit"
                         value="Submit"
                         className={raisedButton}/>
+                        </div>
                     </form>
-                </div>
             </div>
         );
     }

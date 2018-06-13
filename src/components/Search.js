@@ -57,6 +57,7 @@ class Search extends Component {
         return (
             <div className="search">
             <form onSubmit={this.handleSubmit}>
+                <div>
                     <div className="mdl-textfield mdl-js-textfield">
                         <input type="text"
                         className="mdl-textfield__input"
@@ -69,6 +70,7 @@ class Search extends Component {
                     <input type="submit"
                     value="Search"
                     className={raisedButton}/>
+                    </div>
                 </form>
                 <div>
                     {this.renderUsers(this.props.users, this.state.search)}
